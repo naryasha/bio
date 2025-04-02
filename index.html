@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цирковая звёздочка Женя</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Comic+Neue:wght@700&display=swap');
+        
+        body {
+            background-color: #0a0a1a;
+            font-family: 'Comic Neue', cursive;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            animation: flicker 1.5s infinite alternate;
+        }
+        
+        .neon-box {
+            border: 3px solid #ff00ff;
+            box-shadow: 0 0 15px #ff00ff, inset 0 0 15px #ff00ff;
+            animation: pulse 2s infinite;
+        }
+        
+        .clown-hat {
+            position: relative;
+        }
+        
+        .clown-hat:before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 80px solid #ff0000;
+        }
+        
+        .clown-hat:after {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: yellow;
+            border-radius: 50%;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 15px #ff00ff, inset 0 0 15px #ff00ff;
+            }
+            50% {
+                box-shadow: 0 0 30px #ff00ff, inset 0 0 30px #ff00ff;
+            }
+            100% {
+                box-shadow: 0 0 15px #ff00ff, inset 0 0 15px #ff00ff;
+            }
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: #ff00ff;
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 15px;
+            background: #ff00ff;
+        }
+        
+        .balloon:nth-child(2) {
+            background: #00ffff;
+            left: 20%;
+            top: 10%;
+            animation-delay: 1s;
+        }
+        
+        .balloon:nth-child(3) {
+            background: #ffff00;
+            left: 70%;
+            top: 20%;
+            animation-delay: 2s;
+        }
+        
+        .balloon:nth-child(4) {
+            background: #ff9900;
+            left: 40%;
+            top: 30%;
+            animation-delay: 3s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff00ff;
+            opacity: 0.7;
+            animation: fall 5s linear infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .clown-nose {
+            width: 40px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            box-shadow: 0 0 20px red;
+            position: relative;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Плавающие шарики -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    
+    <!-- Конфетти -->
+    <div id="confetti-container"></div>
+    
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+        <!-- Шапка с клоунской шляпой -->
+        <header class="text-center mb-12 clown-hat">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 neon-text" style="font-family: 'Rubik Mono One', sans-serif;">ЖЕНЯ-ЦИРКАЧКА</h1>
+            <div class="clown-nose mb-6"></div>
+            <p class="text-xl md:text-2xl text-yellow-300">Официальный сайт самой неумелой клоунессы эскорта!</p>
+        </header>
+        
+        <!-- Блок с фото (заглушка) -->
+        <div class="neon-box rounded-2xl p-2 mb-12 bg-black bg-opacity-70">
+            <div class="bg-purple-900 rounded-xl h-64 md:h-96 flex items-center justify-center">
+                <i class="fas fa-clown text-9xl text-yellow-400"></i>
+            </div>
+        </div>
+        
+        <!-- Блок "Обо мне" -->
+        <section class="neon-box rounded-2xl p-6 mb-8 bg-black bg-opacity-70">
+            <h2 class="text-3xl font-bold mb-4 text-pink-400 neon-text">🎪 Цирковая программка 🎪</h2>
+            <p class="mb-4 text-lg">Здраствуйте, меня зовут Евгения Сершова. Мне 18 лет, и я - главная клоунесса этого цирка под названием "Эскорт"!</p>
+            <p class="text-lg">Я специализируюсь на <span class="text-yellow-400 font-bold">неумелых трюках</span> и <span class="text-red-400 font-bold">комичных ситуациях</span> в постели. Если хотите посмеяться от души - вы по адресу!</p>
+        </section>
+        
+        <!-- Блок с внешностью -->
+        <section class="neon-box rounded-2xl p-6 mb-8 bg-black bg-opacity-70">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400 neon-text">🎭 Мои цирковые параметры 🎭</h2>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+                <li class="flex items-center"><i class="fas fa-ruler-vertical text-yellow-400 mr-2"></i> Рост: 165 см (в клоунских ботинках - 175!)</li>
+                <li class="flex items-center"><i class="fas fa-tshirt text-pink-400 mr-2"></i> Размер груди: 3 (но в лифчике с ватой - все 5!)</li>
+                <li class="flex items-center"><i class="fas fa-weight text-green-400 mr-2"></i> Вес: государственная тайна цирка</li>
+                <li class="flex items-center"><i class="fas fa-paint-brush text-red-400 mr-2"></i> Особые приметы: вечный клоунский макияж</li>
+            </ul>
+        </section>
+        
+        <!-- Блок с причинами -->
+        <section class="neon-box rounded-2xl p-6 mb-8 bg-black bg-opacity-70">
+            <h2 class="text-3xl font-bold mb-4 text-green-400 neon-text">🤡 Почему такие низкие цены? 🤡</h2>
+            <p class="mb-4 text-lg">Я не просто клоунесса - я <span class="text-yellow-400 font-bold">анти-профессионал</span> в постели! Вот мой фирменный номер:</p>
+            <ol class="list-decimal pl-6 space-y-3 text-lg">
+                <li>Во время минета я могу случайно укусить ваш член (дополнительный аттракцион "Клоун-крокодил")</li>
+                <li>Не умею целоваться (мои поцелуи - это клоунские плевки)</li>
+                <li>Как пассив - лежу молча, как мешок с опилками (аттракцион "Оживи клоуна")</li>
+                <li>Как актив - двигаю бёдрами так, что член вылетает (номер "Летающий член")</li>
+                <li>В принципе я ничего не умею (но зато честно!)</li>
+            </ol>
+            <p class="mt-4 text-lg text-center font-bold text-pink-400">Зато я дешёвая! Всего 500 рублей за этот цирк!</p>
+        </section>
+        
+        <!-- Блок с контактами -->
+        <section class="neon-box rounded-2xl p-6 mb-8 bg-black bg-opacity-70">
+            <h2 class="text-3xl font-bold mb-6 text-purple-400 neon-text">📯 Дрессировочные контакты 📯</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Телефон -->
+                <div class="bg-gradient-to-r from-purple-900 to-pink-900 rounded-xl p-4 text-center">
+                    <div class="text-4xl mb-2"><i class="fas fa-phone-alt text-green-400"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-yellow-300">Звоните клоуну!</h3>
+                    <a href="tel:+79842763769" class="text-2xl font-mono font-bold text-white hover:text-green-300 transition">+7 (984) 276-37-69</a>
+                </div>
+                
+                <!-- Телеграм -->
+                <div class="bg-gradient-to-r from-blue-900 to-cyan-900 rounded-xl p-4 text-center">
+                    <div class="text-4xl mb-2"><i class="fab fa-telegram text-blue-300"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-yellow-300">Пишите в телеграм!</h3>
+                    <a href="https://t.me/filippzu" target="_blank" class="text-xl font-bold text-white hover:text-blue-300 transition">@filippzu</a>
+                </div>
+                
+                <!-- Адрес -->
+                <div class="bg-gradient-to-r from-red-900 to-orange-900 rounded-xl p-4 text-center">
+                    <div class="text-4xl mb-2"><i class="fas fa-map-marker-alt text-red-400"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-yellow-300">Цирковая арена</h3>
+                    <p class="text-lg">Адрес выдаётся после бронирования номера</p>
+                </div>
+                
+                <!-- Канал -->
+                <div class="bg-gradient-to-r from-yellow-900 to-amber-900 rounded-xl p-4 text-center">
+                    <div class="text-4xl mb-2"><i class="fas fa-film text-yellow-300"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Мой клоунский OnlyFans</h3>
+                    <a href="https://t.me/+H4pDaYKTPM1iMjli" target="_blank" class="text-xl font-bold text-white hover:text-yellow-300 transition">t.me/клоунские_фокусы</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Дополнительная информация -->
+        <section class="neon-box rounded-2xl p-6 bg-black bg-opacity-70">
+            <h2 class="text-3xl font-bold mb-4 text-red-400 neon-text">🎪 Важные цирковые объявления 🎪</h2>
+            <div class="space-y-4 text-lg">
+                <p>🔹 В мою киску может поместиться 3 члена сразу (аттракцион "Клоунский автомобиль")</p>
+                <p>🔹 Подписывайтесь на канал моих сутенёров: <a href="https://t.me/krematoriy_syka" target="_blank" class="text-blue-300 hover:underline">t.me/krematoriy_syka</a></p>
+                <p>🔹 Если не хотите напрягаться - можете просто посмотреть мои фотографии на сайте</p>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <p class="text-2xl font-bold text-pink-400 mb-4">Жду тебя, мой тигрёнок! Раф!</p>
+                <div class="text-6xl animate-bounce">🤡</div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Футер -->
+    <footer class="text-center py-8 mt-12 border-t border-pink-900">
+        <p class="text-pink-300">© 2023 Цирк "Неумеха". Все права защищены, особенно мои.</p>
+    </footer>
+    
+    <script>
+        // Создаем конфетти
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff9900', '#ff00ff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Запускаем конфетти при загрузке
+        window.onload = function() {
+            createConfetti();
+            
+            // Анимация при наведении на клоунский нос
+            const nose = document.querySelector('.clown-nose');
+            nose.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.5)';
+                this.style.boxShadow = '0 0 40px red';
+            });
+            nose.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 0 20px red';
+            });
+        };
+    </script>
+</body>
+</html>
